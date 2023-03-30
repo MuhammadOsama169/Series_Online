@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {useDispatch} from "react-redux"
-import {MovieListing} from '../components/MovieListing/MovieListing'
+import {MovieListing} from '../components/MovieListing'
 import movieApi from '../apis/movieApi'
 import { addMovies } from '../store/movieSlice'
 
@@ -26,7 +26,6 @@ export const Home = () => {
 
   return (
     <div>
-      Working
       <MovieListing/>
     </div>
   )
