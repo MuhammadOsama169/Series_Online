@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import {MovieCard} from '../components/MovieCard'
-import { fetchMovies } from '../store/movieSlice';
-import { STATUSES } from '../store/movieSlice';
+import {MovieCard} from './MovieCard'
+import { fetchSeries } from '../store/seriesSlice';
+import { STATUSES } from '../store/seriesSlice';
 
-export const MovieListing = () => {
+export const SeriesListing = () => {
   const dispatch = useDispatch();
-  const { data: movies, status } = useSelector((state) => state.movies);
+  const { data: movies, status } = useSelector((state) => state.series);
 
   useEffect(() => {
-    dispatch(fetchMovies());
+    dispatch(fetchSeries());
 }, []);
 
 if (status === STATUSES.LOADING) {
@@ -25,7 +25,9 @@ let renderMovies=""
 renderMovies =
 movies.Response === "True" ? (
   movies.Search.map((movie, index) => (
+
     <MovieCard key={index} data={movie} />
+    // movie is sent as prop to MoviCard component
   ))
 ) : (
   <div >
