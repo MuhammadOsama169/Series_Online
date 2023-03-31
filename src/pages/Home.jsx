@@ -1,32 +1,16 @@
-import React, { useEffect } from 'react'
-import {useDispatch} from "react-redux"
+import React from 'react'
 import {MovieListing} from '../components/MovieListing'
-import movieApi from '../apis/movieApi'
-import { addMovies } from '../store/movieSlice'
-
+import {SeriesListing} from '../components/SeriesListing'
 
 export const Home = () => {
-  
-  const dispactch = useDispatch();
-
-  useEffect(()=>{
-    const movieText = "harry";
-
-    const fetchMovie =async () =>{
-      const response = await movieApi.get(
-        `?apikey=${import.meta.env.VITE_API_KEY}&s=${movieText}&type=movie`
-        )
-        .catch((err) =>{
-          console.log(err)
-        })
-        dispactch(addMovies(response.data))
-    }
-    fetchMovie()
-  },[])
 
   return (
-    <div>
-      <MovieListing/>
+  <>
+    <MovieListing/>
+    <div className='w-full bg-slate-400 text-center py-10'>
+      <h1 className='text-xl'>Most Popular TV Series</h1>
     </div>
+    <SeriesListing/>
+  </>
   )
 }
