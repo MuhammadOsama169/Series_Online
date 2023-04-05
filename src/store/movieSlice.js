@@ -15,11 +15,24 @@ export const fetchMovies = createAsyncThunk('fetchMovies/movies', async () => {
   const data = await res.json();
   return data;
 });
+export const fetchMoviesOrShowDetails = createAsyncThunk(
+  'movies/fetchMoviesOrShowDetails',
+  async (id) => {
+    const response = await fetch(
+      `http://www.omdbapi.com?apikey=${
+        import.meta.env.VITE_API_KEY
+      }&i=${id}&Plot=full`
+    );
+    const data = await response.json();
+    return data;
+  }
+);
 
 const movieSlice = createSlice({
   name: 'movie',
   initialState: {
     data: {},
+    selectedMovieOrShow: {},
     status: STATUSES.IDLE,
   },
   reducers: {},
@@ -32,10 +45,17 @@ const movieSlice = createSlice({
         state.data = action.payload;
         state.status = STATUSES.IDLE;
       })
+      .addCase(fetchMoviesOrShowDetails.fulfilled, (state, action) => {
+        console.log('fetched successfuly');
+        state.data = action.payload;
+      })
       .addCase(fetchMovies.rejected, (state, action) => {
         state.status = STATUSES.ERROR;
       });
   },
 });
+
+export const getSelectedMovieOrShow = (state) =>
+  state.movies.selectedMovieOrShow;
 
 export default movieSlice.reducer;
