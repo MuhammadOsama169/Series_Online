@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {MovieCard} from '../components/MovieCard'
+import { MovieCard } from '../components/MovieCard';
 import { fetchMovies } from '../store/movieSlice';
 import { STATUSES } from '../store/movieSlice';
 
@@ -10,34 +10,34 @@ export const MovieListing = () => {
 
   useEffect(() => {
     dispatch(fetchMovies());
-}, []);
+  }, []);
 
-if (status === STATUSES.LOADING) {
-  return <h2>Loading....</h2>;
-}
+  if (status === STATUSES.LOADING) {
+    return <h2>Loading....</h2>;
+  }
 
-if (status === STATUSES.ERROR) {
-  return <h2>Something went wrong!</h2>;
-}
+  if (status === STATUSES.ERROR) {
+    return <h2>Something went wrong!</h2>;
+  }
 
-let renderMovies=""
+  let renderMovies = '';
 
-renderMovies =
-movies.Response === "True" ? (
-  movies.Search.map((movie, index) => (
-    <MovieCard key={index} data={movie} />
-  ))
-) : (
-  <div >
-    <h3>{movies.Error}</h3>
-  </div>
-);
+  renderMovies =
+    movies.Response === 'True' ? (
+      movies?.Search?.map((movie, index) => (
+        <MovieCard key={index} data={movie} />
+      ))
+    ) : (
+      <div>
+        <h3>{movies.Error}</h3>
+      </div>
+    );
 
   return (
-    <div className='my-10 mx-10'>
-    <div className='grid grid-col md:grid-cols-5 gap-5 place-items-center'>
-      {renderMovies}
+    <div className="my-10 mx-10">
+      <div className="grid grid-col md:grid-cols-5 gap-5 place-items-center">
+        {renderMovies}
+      </div>
     </div>
-  </div>
-  )
-}
+  );
+};

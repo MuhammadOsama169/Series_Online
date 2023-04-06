@@ -15,11 +15,24 @@ export const fetchSeries = createAsyncThunk('fetchSeries/series', async () => {
   const data = await res.json();
   return data;
 });
+export const fetchShowDetails = createAsyncThunk(
+  'movies/fetchShowDetails',
+  async (id) => {
+    const response = await fetch(
+      `http://www.omdbapi.com?apikey=${
+        import.meta.env.VITE_API_KEY
+      }&i=${id}&Plot=full`
+    );
+    const data = await response.json();
+    return data;
+  }
+);
 
 const seriesSlice = createSlice({
   name: 'series',
   initialState: {
     data: {},
+    selectedShowDetails: {},
     status: STATUSES.IDLE,
   },
   reducers: {},
@@ -31,6 +44,9 @@ const seriesSlice = createSlice({
       .addCase(fetchSeries.fulfilled, (state, action) => {
         state.data = action.payload;
         state.status = STATUSES.IDLE;
+      })
+      .addCase(fetchShowDetails.fulfilled, (state, action) => {
+        state.data = action.payload;
       })
       .addCase(fetchSeries.rejected, (state, action) => {
         state.status = STATUSES.ERROR;

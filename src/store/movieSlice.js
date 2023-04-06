@@ -15,8 +15,8 @@ export const fetchMovies = createAsyncThunk('fetchMovies/movies', async () => {
   const data = await res.json();
   return data;
 });
-export const fetchMoviesOrShowDetails = createAsyncThunk(
-  'movies/fetchMoviesOrShowDetails',
+export const fetchMovieDetails = createAsyncThunk(
+  'movies/fetchMovieDetails',
   async (id) => {
     const response = await fetch(
       `http://www.omdbapi.com?apikey=${
@@ -32,7 +32,7 @@ const movieSlice = createSlice({
   name: 'movie',
   initialState: {
     data: {},
-    selectedMovieOrShow: {},
+    selectedMovieDetails: {},
     status: STATUSES.IDLE,
   },
   reducers: {},
@@ -45,8 +45,7 @@ const movieSlice = createSlice({
         state.data = action.payload;
         state.status = STATUSES.IDLE;
       })
-      .addCase(fetchMoviesOrShowDetails.fulfilled, (state, action) => {
-        console.log('fetched successfuly');
+      .addCase(fetchMovieDetails.fulfilled, (state, action) => {
         state.data = action.payload;
       })
       .addCase(fetchMovies.rejected, (state, action) => {
@@ -54,8 +53,5 @@ const movieSlice = createSlice({
       });
   },
 });
-
-export const getSelectedMovieOrShow = (state) =>
-  state.movies.selectedMovieOrShow;
 
 export default movieSlice.reducer;
