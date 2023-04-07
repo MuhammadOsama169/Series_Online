@@ -5,16 +5,18 @@ export const STATUSES = Object.freeze({
   ERROR: 'error',
   LOADING: 'loading',
 });
-export const fetchSeries = createAsyncThunk('fetchSeries/series', async () => {
-  const seriesText = 'friends';
-  const res = await fetch(
-    `http://www.omdbapi.com?apikey=${
-      import.meta.env.VITE_API_KEY
-    }&s=${seriesText}&type=series`
-  );
-  const data = await res.json();
-  return data;
-});
+export const fetchSeries = createAsyncThunk(
+  'fetchSeries/series',
+  async (term) => {
+    const res = await fetch(
+      `http://www.omdbapi.com?apikey=${
+        import.meta.env.VITE_API_KEY
+      }&s=${term}&type=series`
+    );
+    const data = await res.json();
+    return data;
+  }
+);
 export const fetchShowDetails = createAsyncThunk(
   'movies/fetchShowDetails',
   async (id) => {

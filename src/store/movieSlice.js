@@ -5,16 +5,18 @@ export const STATUSES = Object.freeze({
   ERROR: 'error',
   LOADING: 'loading',
 });
-export const fetchMovies = createAsyncThunk('fetchMovies/movies', async () => {
-  const movieText = 'harry';
-  const res = await fetch(
-    `http://www.omdbapi.com?apikey=${
-      import.meta.env.VITE_API_KEY
-    }&s=${movieText}&type=movie`
-  );
-  const data = await res.json();
-  return data;
-});
+export const fetchMovies = createAsyncThunk(
+  'fetchMovies/movies',
+  async (term) => {
+    const res = await fetch(
+      `http://www.omdbapi.com?apikey=${
+        import.meta.env.VITE_API_KEY
+      }&s=${term}&type=movie`
+    );
+    const data = await res.json();
+    return data;
+  }
+);
 export const fetchMovieDetails = createAsyncThunk(
   'movies/fetchMovieDetails',
   async (id) => {
