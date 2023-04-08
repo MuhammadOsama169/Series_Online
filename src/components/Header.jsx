@@ -1,11 +1,22 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchMovies } from '../store/movieSlice';
 import { fetchSeries } from '../store/seriesSlice';
+import { motion } from 'framer-motion';
 
-export const Header = () => {
+const variants = {
+  open: { opacity: 1 },
+  closed: { opacity: 0 },
+};
+const variants2 = {
+  closed: { opacity: 0 },
+  open: { opacity: 1 },
+};
+
+export const Header = ({ isOpen, setIsOpen }) => {
   const [term, setTerm] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -19,11 +30,59 @@ export const Header = () => {
   const handleClickHome = () => {
     navigate('/');
   };
-  return (
-    <nav className="flex  bg-slate-900 text-white md:h-[100px] ">
-      <div className="flex md:flex-row flex-col justify-between items-center w-full px-5">
-        <img src={logo} className="px-5 w-[200px] md:py-0 py-5" />
 
+  const toggleHamburgerBtn = () => {
+    setIsOpen((current) => !current);
+  };
+
+  return (
+    <nav className="flex z-10 sticky top-0 bg-[#282828] text-white md:h-[100px] ">
+      <div className="flex md:flex-row flex-col justify-between items-center w-full px-5">
+        {isOpen === true ? (
+          <motion.nav animate={isOpen ? 'open' : 'closed'} variants={variants}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+              onClick={toggleHamburgerBtn}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </motion.nav>
+        ) : (
+          <motion.nav
+            animate={isOpen ? 'closed' : 'open'}
+            variants={variants2}
+            transition={{ delay: 1 }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+              onClick={toggleHamburgerBtn}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
+          </motion.nav>
+        )}
+
+        <Link to={`/`}>
+          <img src={logo} className="px-5 w-[200px] md:py-0 py-5" />
+        </Link>
         <form onSubmit={handleInputChange}>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -54,7 +113,37 @@ export const Header = () => {
         </form>
 
         <div className="flex flex-row gap-5">
-          <button onClick={handleClickHome}>Home</button>
+          <button
+            onClick={handleClickHome}
+            to={'/'}
+            className="font-opensans text-lg"
+          >
+            Home
+          </button>
+          <div className="flex gap-[5px] justify-center items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="white"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-5 "
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+              />
+            </svg>
+
+            <button
+              onClick={handleClickHome}
+              to={'/'}
+              className="font-opensans text-lg"
+            >
+              Log In
+            </button>
+          </div>
         </div>
       </div>
     </nav>

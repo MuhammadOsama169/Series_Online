@@ -8,7 +8,6 @@ import { MovieAndShowDetails } from './components/MovieAndShowDetails';
 function App() {
   return (
     <Router>
-      <Header />
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/movie/:imdbID" element={<MovieAndShowDetails />} />
