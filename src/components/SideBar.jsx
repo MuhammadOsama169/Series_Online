@@ -3,7 +3,7 @@ import { Footer } from './Footer';
 
 export const Sidebar = () => {
   return (
-    <nav className="bg-[#282828] h-screen pt-[150px] w-64 px-6 pb-8 fixed top-0 left-0 overflow-y-auto  flex flex-col gap-[30px]">
+    <nav className="bg-[#282828] h-screen pt-[150px] w-64 px-6 pb-8 fixed top-0 left-0 flex flex-col gap-[30px]">
       <div className=" text-white flex items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
