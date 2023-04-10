@@ -6,7 +6,6 @@ import { Header } from '../components/Header';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Sidebar from '../components/SideBar';
-import { Login } from '../components/Login';
 
 const style = {
   color: 'white',
@@ -23,8 +22,7 @@ export const Home = () => {
   return (
     <>
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-      <Login />
-      {/* <div>
+      <div>
         {isOpen === true ? <Sidebar /> : <></>}
         <main className={isOpen ? 'ml-64' : 'ml-0'}>
           <MovieListing />
@@ -49,7 +47,7 @@ export const Home = () => {
           {tabvalue === 0 && <MovieList />}
           {tabvalue === 1 && <SeriesListing />}
         </main>
-      </div> */}
+      </div>
     </>
   );
 };

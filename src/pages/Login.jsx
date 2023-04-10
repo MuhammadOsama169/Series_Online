@@ -2,6 +2,9 @@ import React from 'react';
 import googleLogo from '../assets/google-logo.jpg';
 import facebookLogo from '../assets/facebook-logo.png';
 
+const google = () => {
+  window.open('http://localhost:5000/auth/google', '_self');
+};
 export const Login = () => {
   return (
     <div className="flex flex-col sm:flex-row items-center justify-center h-screen w-full bg-gray-100">
@@ -55,7 +58,10 @@ export const Login = () => {
           />
           <div className="mt-8 flex justify-center w-full">
             <div className="w-full sm:w-auto">
-              <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-3 px-4 rounded-lg border border-gray-400">
+              <button
+                onClick={google}
+                className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-3 px-4 rounded-lg border border-gray-400"
+              >
                 <img src={googleLogo} alt="Google" className="w-5 h-5 mr-2" />
                 Sign in with Google
               </button>

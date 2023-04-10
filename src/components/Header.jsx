@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../store/userSlice';
 import { fetchMovies } from '../store/movieSlice';
 import { fetchSeries } from '../store/seriesSlice';
 import { motion } from 'framer-motion';
@@ -17,6 +18,8 @@ const variants2 = {
 };
 
 export const Header = ({ isOpen, setIsOpen }) => {
+  const username = useSelector((state) => state?.users?.userDetails);
+
   const [term, setTerm] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -29,6 +32,13 @@ export const Header = ({ isOpen, setIsOpen }) => {
 
   const handleClickHome = () => {
     navigate('/');
+  };
+  const handleSignIn = () => {
+    navigate('/login');
+  };
+  const handleSignOut = () => {
+    navigate('/login');
+    dispatch(logout({}));
   };
 
   const toggleHamburgerBtn = () => {
@@ -120,30 +130,22 @@ export const Header = ({ isOpen, setIsOpen }) => {
           >
             Home
           </button>
-          <div className="flex gap-[5px] justify-center items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="white"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-5 "
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+          {username || username?.aud ? (
+            <div className="backdrop-filter backdrop-blur-lg flex">
+              <button className="font-opensans text-lg" onClick={handleSignOut}>
+                Sign Out
+              </button>
+              <img
+                src={username?.photos[0].value}
+                className="rounded-full h-8 w-8 object-cover ml-4"
+                alt=""
               />
-            </svg>
-
-            <button
-              onClick={handleClickHome}
-              to={'/'}
-              className="font-opensans text-lg"
-            >
-              Log In
+            </div>
+          ) : (
+            <button className="font-opensans text-lg" onClick={handleSignIn}>
+              Sign In
             </button>
-          </div>
+          )}
         </div>
       </div>
     </nav>
