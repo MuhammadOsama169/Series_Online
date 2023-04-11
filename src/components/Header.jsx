@@ -47,7 +47,7 @@ export const Header = ({ isOpen, setIsOpen }) => {
 
   return (
     <nav className="flex z-10 sticky top-0 bg-[#282828] text-white md:h-[100px] ">
-      <div className="flex md:flex-row flex-col justify-between items-center w-full px-5">
+      <div className="flex md:flex-row flex-col items-center w-full px-5">
         {isOpen === true ? (
           <motion.nav animate={isOpen ? 'open' : 'closed'} variants={variants}>
             <svg
@@ -89,47 +89,69 @@ export const Header = ({ isOpen, setIsOpen }) => {
             </svg>
           </motion.nav>
         )}
-
         <Link to={`/`}>
           <img src={logo} className="px-5 w-[200px] md:py-0 py-5" />
         </Link>
-        <form onSubmit={handleInputChange}>
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"></div>
-            <input
-              type="search"
-              className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Search Movies"
-              value={term}
-              onChange={(e) => setTerm(e.target.value)}
-            />
-          </div>
-        </form>
-
-        <div className="flex flex-row gap-5">
-          <button
-            onClick={handleClickHome}
-            to={'/'}
-            className="font-opensans text-lg"
+        <div className="flex justify-between w-full m-auto">
+          <form
+            onSubmit={handleInputChange}
+            className="flex justify-center m-auto"
           >
-            Home
-          </button>
-          {username || username?.aud ? (
-            <div className="backdrop-filter backdrop-blur-lg flex">
-              <button className="font-opensans text-lg" onClick={handleSignOut}>
-                Sign Out
-              </button>
-              <img
-                src={username?.photos[0].value}
-                className="rounded-full h-8 w-8 object-cover ml-4"
-                alt=""
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="grey"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                  />
+                </svg>
+              </div>
+              <input
+                type="search"
+                className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Search Movies"
+                value={term}
+                onChange={(e) => setTerm(e.target.value)}
               />
             </div>
-          ) : (
-            <button className="font-opensans text-lg" onClick={handleSignIn}>
-              Sign In
+          </form>
+
+          <div className="flex flex-row gap-5">
+            <button
+              onClick={handleClickHome}
+              to={'/'}
+              className="font-opensans text-lg"
+            >
+              Home
             </button>
-          )}
+            {username || username?.aud ? (
+              <div className="backdrop-filter backdrop-blur-lg flex">
+                <button
+                  className="font-opensans text-lg"
+                  onClick={handleSignOut}
+                >
+                  Sign Out
+                </button>
+                <img
+                  src={username?.photos[0].value}
+                  className="rounded-full h-8 w-8 object-cover ml-4"
+                  alt=""
+                />
+              </div>
+            ) : (
+              <button className="font-opensans text-lg" onClick={handleSignIn}>
+                Sign In
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </nav>

@@ -2,8 +2,8 @@ import React from 'react';
 
 export const Footer = () => {
   return (
-    <footer className="flex justify-end text-gray-300 py-4">
-      <div className="container mx-auto px-4">
+    <footer className=" text-gray-300 py-4">
+      <div className="container mx-auto px-2">
         <p className="text-center">
           &copy; {new Date().getFullYear()} Putlocker Clone
         </p>
