@@ -40,8 +40,14 @@ export const Home = () => {
               },
             }}
           >
-            <Tab label="Movies" sx={style}></Tab>
-            <Tab label="TV Series" sx={style}></Tab>
+            <Tab
+              label="Movies"
+              sx={{ color: 'white', '&.Mui-selected': { color: '#00FF00' } }}
+            ></Tab>
+            <Tab
+              label="TV Series"
+              sx={{ color: 'white', '&.Mui-selected': { color: '#00FF00' } }}
+            ></Tab>
           </Tabs>
           {tabvalue === 0 && <MovieList />}
           {tabvalue === 1 && <SeriesListing />}

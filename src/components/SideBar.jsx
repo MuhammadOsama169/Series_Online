@@ -1,5 +1,6 @@
 import React from 'react';
 import { Footer } from './Footer';
+import SocialMediaIcons from './SocialMediaIcons';
 
 export const Sidebar = () => {
   return (
@@ -72,7 +73,14 @@ export const Sidebar = () => {
           TV Series
         </a>
       </div>
-      <Footer />
+      <div className="flex flex-col justify-end m-auto">
+        <div>
+          <Footer />
+        </div>
+        <div>
+          <SocialMediaIcons />
+        </div>
+      </div>
     </nav>
   );
 };
