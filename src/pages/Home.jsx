@@ -34,7 +34,6 @@ export const Home = () => {
             className="px-10"
             onChange={handleTabsChange}
             value={tabvalue}
-            textColor="common.white"
             TabIndicatorProps={{
               style: {
                 backgroundColor: '#00FF00',
