@@ -5,6 +5,9 @@ import facebookLogo from '../assets/facebook-logo.png';
 const google = () => {
   window.open('http://localhost:5000/auth/google', '_self');
 };
+const github = () => {
+  window.open('http://localhost:5000/auth/github', '_self');
+};
 export const Login = () => {
   return (
     <div className="flex flex-col sm:flex-row items-center justify-center h-screen w-full bg-gray-100">
@@ -64,6 +67,15 @@ export const Login = () => {
               >
                 <img src={googleLogo} alt="Google" className="w-5 h-5 mr-2" />
                 Sign in with Google
+              </button>
+            </div>
+            <div className="w-full sm:w-auto">
+              <button
+                onClick={github}
+                className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-3 px-4 rounded-lg border border-gray-400"
+              >
+                <img src={googleLogo} alt="Google" className="w-5 h-5 mr-2" />
+                Sign in with Github
               </button>
             </div>
             <div className="w-full sm:w-auto mt-4 sm:mt-0 sm:ml-4">

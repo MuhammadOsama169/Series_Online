@@ -13,6 +13,7 @@ const userSlice = createSlice({
     },
     logout: (state) => {
       state.isUserLoggedIn = false;
+      state.userDetails = null;
     },
   },
 });
