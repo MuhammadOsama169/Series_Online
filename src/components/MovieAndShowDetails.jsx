@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchMovieDetails } from '../store/movieSlice';
+import { Link } from 'react-router-dom';
 
 export const MovieAndShowDetails = () => {
   const { imdbID } = useParams();
@@ -16,12 +17,30 @@ export const MovieAndShowDetails = () => {
 
   return (
     <>
+      <Link to={`/`}>
+        <div className="md:mt-10 mt-2 ml-10">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="white"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"
+            />
+          </svg>
+        </div>
+      </Link>
       {Object.keys(details).lenght === 0 ? (
         <h1 className="text-white">...Loading</h1>
       ) : (
         <div className="text-white flex md:flex-row flex-col justify-between px-10 mt-10 py-10">
           <div className="">
-            <h3 className="text-5xl">{details.Title}</h3>
+            <h3 className="text-5xl mt-4">{details.Title}</h3>
             <h3 className="text-lg py-5 break-words pr-20">{details.Plot}</h3>
             <div className="md:grid md:grid-cols-2 md:gap-5 flex flex-col">
               {/* First col */}
