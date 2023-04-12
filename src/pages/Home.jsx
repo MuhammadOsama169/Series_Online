@@ -3,15 +3,13 @@ import { MovieListing } from '../components/MovieListing';
 import { SeriesListing } from '../components/SeriesListing';
 import { MovieList } from '../components/MoviesList';
 import { Header } from '../components/Header';
+import useMediaQuery from '../hooks/useMediaQuery';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Sidebar from '../components/SideBar';
 
-const style = {
-  color: 'white',
-};
-
 export const Home = () => {
+  const isAboveSmallScreens = useMediaQuery('(min-width:768px)');
   const [tabvalue, setTabValue] = React.useState(0);
   const [isOpen, setIsOpen] = useState(true);
 
@@ -22,9 +20,10 @@ export const Home = () => {
   return (
     <>
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
+
       <div>
-        {isOpen === true ? <Sidebar /> : <></>}
-        <main className={isOpen ? 'ml-64' : 'ml-0'}>
+        {isOpen === true && isAboveSmallScreens ? <Sidebar /> : <></>}
+        <main className={isOpen && isAboveSmallScreens ? 'ml-64' : 'ml-0'}>
           <MovieListing />
 
           <div className="w-full text-left py-10 px-12">

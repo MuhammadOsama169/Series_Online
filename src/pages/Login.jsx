@@ -1,6 +1,5 @@
 import React from 'react';
 import background from '../assets/login-background.jpg';
-import logo from '../assets/logo.png';
 import { Link } from 'react-router-dom';
 
 const google = () => {
@@ -15,7 +14,7 @@ export const Login = () => {
     <div className="flex flex-col sm:flex-row items-center justify-center h-screen  bg-gray-100 ">
       <div className="flex flex-col w-full sm:w-1/2 justify-center items-center sm:items-start sm:px-8">
         <div className="flex justify-center m-auto md:mb-10">
-          <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:leading-none mb-6 text-center">
+          <h1 className="md:text-4xl text-3xl font-extrabold text-gray-900 sm:text-5xl sm:leading-none mb-6 text-center">
             Sign in to your account
           </h1>
         </div>
@@ -93,9 +92,9 @@ export const Login = () => {
           </Link>
         </div>
       </div>
-      <div className="flex w-full sm:w-1/2 justify-center items-center">
-        <div className="max-w-md w-full">
-          <img src={background} alt="Login" className="rounded-lg shadow-lg" />
+      <div className="flex w-full sm:w-1/2 justify-center items-center order-first md:order-last mb-4 md:mb-0">
+        <div className="max-w-md md:w-full w-[80%]">
+          <img src={background} alt="Login" className="rounded-lg shadow-lg " />
         </div>
       </div>
     </div>

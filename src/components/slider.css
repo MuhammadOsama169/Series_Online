@@ -1,8 +1,9 @@
 @media screen and (min-width: 850px) {
     .margin-gap {
       margin-top: 4.4%;
-  }}
-
+    }
+  }
+  
       .swiper {
           height: 100%;
           padding:0px;
@@ -35,4 +36,5 @@
           margin:0px !important;
           animation: 150s linear 0s infinite normal none running ;
         }
+        
         
