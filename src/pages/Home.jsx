@@ -9,7 +9,7 @@ import Tab from '@mui/material/Tab';
 import Sidebar from '../components/SideBar';
 
 export const Home = () => {
-  const isAboveSmallScreens = useMediaQuery('(min-width:768px)');
+  const isAboveSmallScreens = useMediaQuery('(min-width:850px)');
   const [tabvalue, setTabValue] = React.useState(0);
   const [isOpen, setIsOpen] = useState(true);
 
@@ -40,16 +40,16 @@ export const Home = () => {
             }}
           >
             <Tab
-              label="Movies"
-              sx={{ color: 'white', '&.Mui-selected': { color: '#00FF00' } }}
-            ></Tab>
-            <Tab
               label="TV Series"
               sx={{ color: 'white', '&.Mui-selected': { color: '#00FF00' } }}
             ></Tab>
+            <Tab
+              label="Movies"
+              sx={{ color: 'white', '&.Mui-selected': { color: '#00FF00' } }}
+            ></Tab>
           </Tabs>
-          {tabvalue === 0 && <MovieList />}
-          {tabvalue === 1 && <SeriesListing />}
+          {tabvalue === 0 && <SeriesListing />}
+          {tabvalue === 1 && <MovieList />}
         </main>
       </div>
     </>

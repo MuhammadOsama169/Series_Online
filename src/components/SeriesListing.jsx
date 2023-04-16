@@ -7,7 +7,7 @@ import { STATUSES } from '../store/seriesSlice';
 export const SeriesListing = () => {
   const dispatch = useDispatch();
   const { data: movies, status } = useSelector((state) => state.series);
-  const seriesText = 'friends';
+  const seriesText = 'The Walking Dead';
   useEffect(() => {
     dispatch(fetchSeries(seriesText));
   }, []);

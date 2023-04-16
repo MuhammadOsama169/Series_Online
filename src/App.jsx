@@ -7,6 +7,8 @@ import { PageNotFound } from './components/PageNotFound';
 import { MovieAndShowDetails } from './components/MovieAndShowDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginSuccess } from './store/userSlice';
+import { MoviePage } from './pages/MoviePage';
+import { SeriesPage } from './pages/SeriesPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +43,8 @@ function App() {
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/movies" element={<MoviePage />} />
+        <Route path="/series" element={<SeriesPage />} />
         <Route path="/movie/:imdbID" element={<MovieAndShowDetails />} />
         <Route element={<PageNotFound />} />
       </Routes>
