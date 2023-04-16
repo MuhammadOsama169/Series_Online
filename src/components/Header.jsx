@@ -21,7 +21,7 @@ const variants2 = {
 };
 
 export const Header = ({ isOpen, setIsOpen }) => {
-  const isAboveSmallScreens = useMediaQuery('(min-width:768px)');
+  const isAboveSmallScreens = useMediaQuery('(min-width:850px)');
   const [isMenuToggled, setIsMediaToggled] = useState(false);
 
   const username = useSelector((state) => state?.users?.userDetails);
@@ -56,8 +56,8 @@ export const Header = ({ isOpen, setIsOpen }) => {
       {/* Desktop */}
 
       {isAboveSmallScreens ? (
-        <div className="flex justify-between font-semibold text-base items-center">
-          <div className="flex md:flex-row flex-col items-center w-full px-5">
+        <div className="flex font-semibold text-base w-full m-auto ">
+          <div className="flex md:flex-row flex-col items-center  px-5">
             {isOpen === true ? (
               <motion.nav
                 animate={isOpen ? 'open' : 'closed'}
@@ -102,15 +102,13 @@ export const Header = ({ isOpen, setIsOpen }) => {
                 </svg>
               </motion.nav>
             )}
-            <div className="md:flex-row flex-col "></div>
+
             <Link to={`/`}>
               <img src={logo} className="px-5 w-[200px] md:py-0 py-5" />
             </Link>
-            <div className="flex justify-between w-full m-auto">
-              <form
-                onSubmit={handleInputChange}
-                className="flex justify-center m-auto"
-              >
+
+            <div className="flex m-auto w-full ml-[100px]">
+              <form onSubmit={handleInputChange}>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg
@@ -138,36 +136,38 @@ export const Header = ({ isOpen, setIsOpen }) => {
                 </div>
               </form>
 
-              <div className="flex flex-row gap-5 ">
-                <button
-                  onClick={handleClickHome}
-                  to={'/'}
-                  className="font-opensans text-lg"
-                >
-                  Home
-                </button>
-                {username || username?.aud ? (
-                  <div className="backdrop-filter backdrop-blur-lg flex">
+              <div className="flex m-auto justify-end md:ml-[700px]">
+                <div className="flex gap-5 ">
+                  <button
+                    onClick={handleClickHome}
+                    to={'/'}
+                    className="font-opensans text-lg"
+                  >
+                    Home
+                  </button>
+                  {username || username?.aud ? (
+                    <div className="backdrop-filter backdrop-blur-lg flex">
+                      <button
+                        className="font-opensans text-lg"
+                        onClick={handleSignOut}
+                      >
+                        Sign Out
+                      </button>
+                      <img
+                        src={username?.photos[0].value}
+                        className="rounded-full h-8 w-8 object-cover ml-4"
+                        alt=""
+                      />
+                    </div>
+                  ) : (
                     <button
                       className="font-opensans text-lg"
-                      onClick={handleSignOut}
+                      onClick={handleSignIn}
                     >
-                      Sign Out
+                      Sign In
                     </button>
-                    <img
-                      src={username?.photos[0].value}
-                      className="rounded-full h-8 w-8 object-cover ml-4"
-                      alt=""
-                    />
-                  </div>
-                ) : (
-                  <button
-                    className="font-opensans text-lg"
-                    onClick={handleSignIn}
-                  >
-                    Sign In
-                  </button>
-                )}
+                  )}
+                </div>
               </div>
             </div>
           </div>

@@ -44,7 +44,7 @@ export const Sidebar = () => {
         </svg>
 
         <a
-          href="/"
+          href="/movies"
           className="ml-[5px] text-xl font-bold text-[#ececff] hover:text-blue-600"
         >
           Movies
@@ -67,7 +67,7 @@ export const Sidebar = () => {
         </svg>
 
         <a
-          href="/"
+          href="/series"
           className="ml-[5px] text-xl font-bold text-[#ececff] hover:text-blue-600"
         >
           TV Series

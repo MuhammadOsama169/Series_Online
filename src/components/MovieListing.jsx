@@ -43,15 +43,9 @@ export const MovieListing = () => {
     );
 
   return (
-    // <div className="my-10 mx-10">
-    //   <div className="grid grid-col md:grid-cols-5 gap-5 place-items-center">
-    //     {renderMovies}
-    //   </div>
-    // </div>
     <Swiper
-      centeredSlides={true}
       autoplay={{
-        delay: 80500,
+        delay: 1500,
         disableOnInteraction: false,
       }}
       pagination={{
@@ -59,9 +53,22 @@ export const MovieListing = () => {
       }}
       navigation
       modules={[Autoplay, Navigation]}
-      slidesPerView={6}
       spaceBetween={0}
       className="mySwiper"
+      breakpoints={{
+        640: {
+          slidesPerView: 1,
+        },
+        850: {
+          slidesPerView: 3,
+        },
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 5,
+        },
+      }}
     >
       {movies?.Response === 'True' &&
         movies?.Search?.map((movie) => (
