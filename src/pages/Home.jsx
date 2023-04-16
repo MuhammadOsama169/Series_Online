@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MovieListing } from '../components/MovieListing';
-import { SeriesListing } from '../components/SeriesList';
+import { SeriesListing } from '../components/SeriesListing';
 import { MovieList } from '../components/MoviesList';
 import { Header } from '../components/Header';
 import useMediaQuery from '../hooks/useMediaQuery';
