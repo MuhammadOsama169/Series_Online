@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SeriesListing } from '../components/SeriesList';
+import { SeriesListing } from '../components/SeriesListing';
 import { Header } from '../components/Header';
 import useMediaQuery from '../hooks/useMediaQuery';
 import Sidebar from '../components/SideBar';
