@@ -18,5 +18,4 @@ export default defineConfig({
     });
     return env;
   })(),
-  plugins: [vue()],
 });
