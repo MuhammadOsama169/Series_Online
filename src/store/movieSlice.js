@@ -5,6 +5,7 @@ export const STATUSES = Object.freeze({
   ERROR: 'error',
   LOADING: 'loading',
 });
+// eslint-disable-next-line no-undef
 const apiKey = import.meta.env.VITE_API_KEY ?? process.env.VITE_API_KEY;
 
 export const fetchMovies = createAsyncThunk(
@@ -40,7 +41,7 @@ const movieSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchMovies.pending, (state, action) => {
+      .addCase(fetchMovies.pending, (state) => {
         state.status = STATUSES.LOADING;
       })
       .addCase(fetchMovies.fulfilled, (state, action) => {
@@ -50,7 +51,7 @@ const movieSlice = createSlice({
       .addCase(fetchMovieDetails.fulfilled, (state, action) => {
         state.data = action.payload;
       })
-      .addCase(fetchMovies.rejected, (state, action) => {
+      .addCase(fetchMovies.rejected, (state) => {
         state.status = STATUSES.ERROR;
       });
   },

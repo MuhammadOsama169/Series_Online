@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { MovieListing } from '../components/MovieListing';
 import { SeriesListing } from '../components/SeriesListing';
 import { MovieList } from '../components/MoviesList';
@@ -54,4 +55,7 @@ export const Home = () => {
       </div>
     </>
   );
+};
+Home.propTypes = {
+  isOpen: PropTypes.bool,
 };

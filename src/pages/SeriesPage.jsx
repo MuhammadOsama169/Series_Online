@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { SeriesListing } from '../components/SeriesListing';
 import { Header } from '../components/Header';
