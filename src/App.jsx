@@ -5,7 +5,7 @@ import { Login } from './pages/Login';
 import { Footer } from './components/Footer';
 import { PageNotFound } from './components/PageNotFound';
 import { MovieAndShowDetails } from './components/MovieAndShowDetails';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { loginSuccess } from './store/userSlice';
 import { MoviePage } from './pages/MoviePage';
 import { SeriesPage } from './pages/SeriesPage';

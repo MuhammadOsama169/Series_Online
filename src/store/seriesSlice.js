@@ -6,6 +6,7 @@ export const STATUSES = Object.freeze({
   LOADING: 'loading',
 });
 
+// eslint-disable-next-line no-undef
 const apiKey = import.meta.env.VITE_API_KEY ?? process.env.VITE_API_KEY;
 
 export const fetchSeries = createAsyncThunk(
@@ -41,7 +42,7 @@ const seriesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchSeries.pending, (state, action) => {
+      .addCase(fetchSeries.pending, (state) => {
         state.status = STATUSES.LOADING;
       })
       .addCase(fetchSeries.fulfilled, (state, action) => {
@@ -51,7 +52,7 @@ const seriesSlice = createSlice({
       .addCase(fetchShowDetails.fulfilled, (state, action) => {
         state.data = action.payload;
       })
-      .addCase(fetchSeries.rejected, (state, action) => {
+      .addCase(fetchSeries.rejected, (state) => {
         state.status = STATUSES.ERROR;
       });
   },
