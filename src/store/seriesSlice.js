@@ -5,13 +5,13 @@ export const STATUSES = Object.freeze({
   ERROR: 'error',
   LOADING: 'loading',
 });
+const apiKey = import.meta.env.VITE_API_KEY;
+
 export const fetchSeries = createAsyncThunk(
   'fetchSeries/series',
   async (term) => {
     const res = await fetch(
-      `http://www.omdbapi.com?apikey=${
-        import.meta.env.VITE_API_KEY
-      }&s=${term}&type=series`
+      `http://www.omdbapi.com?apikey=${apiKey}&s=${term}&type=series`
     );
     const data = await res.json();
     return data;
