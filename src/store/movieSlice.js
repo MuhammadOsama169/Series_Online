@@ -5,7 +5,7 @@ export const STATUSES = Object.freeze({
   ERROR: 'error',
   LOADING: 'loading',
 });
-const apiKey = import.meta.env.VITE_API_KEY;
+const apiKey = import.meta.env.DATOCMS_API_TOKEN ?? process.env.VITE_API_KEY;
 
 export const fetchMovies = createAsyncThunk(
   'fetchMovies/movies',
