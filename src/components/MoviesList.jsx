@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { MovieCard } from '../components/MovieCard';
-import { fetchMovies } from '../store/movieSlice';
+import { fetchTrendingMovies } from '../store/trendingMovies';
 import { STATUSES } from '../store/movieSlice';
 
 export const MovieList = () => {
   const dispatch = useDispatch();
-  const { data: movies, status } = useSelector((state) => state.movies);
-  const placeHolderMovies = 'star wars';
+  const { data: movies, status } = useSelector((state) => state.trendingmovies);
 
   useEffect(() => {
-    dispatch(fetchMovies(placeHolderMovies));
+    dispatch(fetchTrendingMovies());
   }, []);
 
   if (status === STATUSES.LOADING) {
@@ -21,24 +19,17 @@ export const MovieList = () => {
     return <h2>Something went wrong!</h2>;
   }
 
-  let renderMovies = '';
-
-  renderMovies =
-    movies.Response === 'True' ? (
-      movies?.Search?.map((movie, index) => (
-        <MovieCard key={index} data={movie} />
-      ))
-    ) : (
-      <div>
-        <h3>{movies.Error}</h3>
-      </div>
-    );
-
   return (
-    <div className="my-10 mx-10">
-      <div className="grid grid-col md:grid-cols-5 gap-5 place-items-center">
-        {renderMovies}
-      </div>
+    <div className="grid grid-cols-1 md:grid-cols-5 gap-5 place-items-center text-white text-center px-2">
+      {movies?.results?.map((movie) => (
+        <div key={movie.id}>
+          <img
+            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+            alt={movie.title}
+          />
+          <h1>{movie.title}</h1>
+        </div>
+      ))}
     </div>
   );
 };
