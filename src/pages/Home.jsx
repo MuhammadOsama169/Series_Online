@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { MovieListing } from '../components/MovieListing';
+import { MovieListingSlider } from '../components/MovieListingSlider';
 import { SeriesListing } from '../components/SeriesListing';
 import { MovieList } from '../components/MoviesList';
 import { Header } from '../components/Header';
@@ -25,7 +25,7 @@ export const Home = () => {
       <div>
         {isOpen === true && isAboveSmallScreens ? <Sidebar /> : <></>}
         <main className={isOpen && isAboveSmallScreens ? 'ml-64' : 'ml-0'}>
-          <MovieListing />
+          <MovieListingSlider />
 
           <div className="w-full text-left py-10 px-12">
             <h1 className="text-[25px] text-white font-opensans">Trending</h1>

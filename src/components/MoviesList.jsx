@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrendingMovies } from '../store/trendingMovies';
 import { STATUSES } from '../store/movieSlice';
+import { Link } from 'react-router-dom';
 
 export const MovieList = () => {
   const dispatch = useDispatch();
@@ -21,14 +22,16 @@ export const MovieList = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-5 gap-5 place-items-center text-white text-center px-2">
-      {movies?.results?.map((movie) => (
-        <div key={movie.id}>
-          <img
-            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-            alt={movie.title}
-          />
-          <h1>{movie.title}</h1>
-        </div>
+      {movies?.results?.map((movie, id) => (
+        <Link key={movie.id}>
+          <div>
+            <img
+              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              alt={movie.title}
+            />
+            <h1>{movie.title}</h1>
+          </div>
+        </Link>
       ))}
     </div>
   );

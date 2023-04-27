@@ -22,9 +22,7 @@ export const fetchMovieDetails = createAsyncThunk(
   'movies/fetchMovieDetails',
   async (id) => {
     const response = await fetch(
-      `http://www.omdbapi.com?apikey=${
-        import.meta.env.VITE_API_KEY
-      }&i=${id}&Plot=full`
+      `http://www.omdbapi.com?apikey=${apiKey}&i=${id}&Plot=full`
     );
     const data = await response.json();
     return data;

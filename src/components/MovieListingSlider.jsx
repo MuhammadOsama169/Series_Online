@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { MovieCard } from '../components/MovieCard';
-import { fetchMovies } from '../store/movieSlice';
-import { STATUSES } from '../store/movieSlice';
+import { MovieCard } from './MovieCard';
+import { STATUSES, fetchMovies } from '../store/movieSlice';
 import { Link } from 'react-router-dom';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -12,7 +10,7 @@ import 'swiper/css/navigation';
 import './slider.css';
 import { Autoplay, Navigation } from 'swiper';
 
-export const MovieListing = () => {
+export const MovieListingSlider = () => {
   const dispatch = useDispatch();
   const { data: movies, status } = useSelector((state) => state.movies);
   const placeHolderMovies = 'star wars';
