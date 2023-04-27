@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import VITE_API_KEY2 from './apikey2';
 
 export const STATUSES = Object.freeze({
   IDLE: 'idle',
@@ -7,13 +6,13 @@ export const STATUSES = Object.freeze({
   LOADING: 'loading',
 });
 // eslint-disable-next-line no-undef
-// const apiKey = process.env.VITE_API_KEY2;
+const apiKey = process.env.VITE_API_KEY2;
 
 export const fetchTrendingMovies = createAsyncThunk(
   'fetchMovies/movies',
   async (term) => {
     const res = await fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${VITE_API_KEY2}`
+      `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
     );
     const data = await res.json();
     return data;
