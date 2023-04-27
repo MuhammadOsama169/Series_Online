@@ -7,6 +7,7 @@ export const STATUSES = Object.freeze({
 });
 
 const apiKey = process.env.VITE_API_KEY;
+
 export const fetchSeries = createAsyncThunk(
   'fetchSeries/series',
   async (term) => {
