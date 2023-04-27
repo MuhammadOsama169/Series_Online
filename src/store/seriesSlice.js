@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 // eslint-disable-next-line no-undef
-const apiKey = process.env.VITE_API_KEY;
+const apiKey = process.env.VITE_APP_API_KEY;
 
 export const STATUSES = Object.freeze({
   IDLE: 'idle',

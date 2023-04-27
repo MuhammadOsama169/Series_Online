@@ -6,7 +6,7 @@ export const STATUSES = Object.freeze({
   LOADING: 'loading',
 });
 // eslint-disable-next-line no-undef
-const apiKey = process.env.VITE_API_KEY;
+const apiKey = process.env.VITE_APP_API_KEY;
 
 export const fetchMovies = createAsyncThunk(
   'fetchMovies/movies',
