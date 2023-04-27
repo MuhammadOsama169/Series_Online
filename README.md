@@ -5,7 +5,7 @@ This is a clone of seriesonline, where you can check trending movies and their d
 
 ## Demo 💻
 
-https://homerun-muhammad.netlify.app
+https://seriesonline.netlify.app/
 
 
 
