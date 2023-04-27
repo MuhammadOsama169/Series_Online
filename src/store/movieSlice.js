@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import VITE_API_KEY from './apikeys';
 
 export const STATUSES = Object.freeze({
   IDLE: 'idle',
@@ -12,7 +13,7 @@ export const fetchMovies = createAsyncThunk(
   'fetchMovies/movies',
   async (term) => {
     const res = await fetch(
-      `http://www.omdbapi.com?apikey=${apiKey}&s=${term}&type=movie`
+      `http://www.omdbapi.com?apikey=${VITE_API_KEY}&s=${term}&type=movie`
     );
     const data = await res.json();
     return data;
