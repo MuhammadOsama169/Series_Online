@@ -2,8 +2,6 @@ node_modules
 .env
 backend
 build
-apikeys.js
-apikey2.js
 
 logs
 *.log

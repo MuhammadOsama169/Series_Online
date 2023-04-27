@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import VITE_API_KEY from './apikeys';
 
 export const STATUSES = Object.freeze({
   IDLE: 'idle',
@@ -8,13 +7,13 @@ export const STATUSES = Object.freeze({
 });
 
 // eslint-disable-next-line no-undef
-// const apiKey = process.env.VITE_API_KEY;
+const apiKey = process.env.VITE_API_KEY;
 
 export const fetchSeries = createAsyncThunk(
   'fetchSeries/series',
   async (term) => {
     const res = await fetch(
-      `http://www.omdbapi.com?apikey=${VITE_API_KEY}&s=${term}&type=series`
+      `http://www.omdbapi.com?apikey=${apiKey}&s=${term}&type=series`
     );
     const data = await res.json();
     return data;
