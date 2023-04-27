@@ -9,8 +9,8 @@ export const STATUSES = Object.freeze({
 const apiKey = process.env.VITE_APP_API_KEY2;
 
 export const fetchTrendingMovies = createAsyncThunk(
-  'fetchMovies/movies',
-  async (term) => {
+  'fetchTrendingMovies/movies',
+  async () => {
     const res = await fetch(
       `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
     );

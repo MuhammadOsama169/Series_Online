@@ -2,9 +2,11 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { fetchMovieDetails } from '../store/movieSlice';
 
 export const MovieAndShowDetails = () => {
   const { imdbID } = useParams();
+
   const dispatch = useDispatch();
   const { data: details, status } = useSelector((state) => state.movies);
 
