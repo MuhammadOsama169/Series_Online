@@ -1,12 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
-export const STATUSES = Object.freeze({
+const STATUSES = Object.freeze({
   IDLE: 'idle',
   ERROR: 'error',
   LOADING: 'loading',
 });
 // eslint-disable-next-line no-undef
-const apiKey = process.env.VITE_API_KEY;
+const apiKey = process.env.VITE_APP_API_KEY;
 
 export const fetchSeries = createAsyncThunk(
   'fetchSeries/series',
