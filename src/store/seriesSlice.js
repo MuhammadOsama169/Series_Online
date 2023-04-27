@@ -8,7 +8,7 @@ export const STATUSES = Object.freeze({
 });
 
 // eslint-disable-next-line no-undef
-// const apiKey = process.env.VITE_API_KEY;
+
 
 export const fetchSeries = createAsyncThunk(
   'fetchSeries/series',
