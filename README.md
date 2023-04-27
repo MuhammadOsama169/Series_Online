@@ -28,22 +28,6 @@ Leave a github star if you found this repo useful. This helps in increasing the 
 ## 📫 How to reach me
 https://www.linkedin.com/in/muhammad-osama-688123162/
 
-
-## Installation
-
-1. Clone the repository
-```
-git clone https://github.com/<username>/seriesonline-clone.git
-```
-
-2. Install dependencies
-```
-cd seriesonline-clone
-npm install
-You must add your own api keys as env files will not be present if cloned
-```
-
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
