@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import VITE_API_KEY from './apikeys';
 
 export const STATUSES = Object.freeze({
   IDLE: 'idle',
