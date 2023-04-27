@@ -14,8 +14,6 @@ https://seriesonline.netlify.app/
 - Check out trending movies.
 - Click on the movie to see its details like the overview
 
-STRIPE
-
 
 ## 🌠 About Me
 I'm a junior full stack developer looking for new oppertunities and teams to work with!
