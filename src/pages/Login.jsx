@@ -38,9 +38,9 @@ export const Login = () => {
     try {
       const result = await signInWithRedirect(auth, githubProvider);
       navigate('/');
-      console.log(result);
     } catch (error) {
       console.log(error);
+      navigate('/');
     }
   };
   //Facebook Sign in from firebase
