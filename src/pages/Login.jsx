@@ -1,15 +1,63 @@
 import React from 'react';
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  FacebookAuthProvider,
+  updateProfile,
+  GithubAuthProvider,
+  signInWithRedirect,
+} from 'firebase/auth';
+import { auth } from '../utils/firebase-config';
 import background from '../assets/login-background.jpg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const google = () => {
-  window.open('http://localhost:5000/auth/google', '_self');
-};
-const github = () => {
-  window.open('http://localhost:5000/auth/github', '_self');
-};
+// const google = () => {
+//   window.open('http://localhost:5000/auth/google', '_self');
+// };
+// const github = () => {
+//   window.open('http://localhost:5000/auth/github', '_self');
+// };
 
 export const Login = () => {
+  const navigate = useNavigate();
+  //Google Sign in from firebase
+  const googleProvider = new GoogleAuthProvider();
+
+  const GoogleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  //Github Sign in from firebase
+  const githubProvider = new GithubAuthProvider();
+
+  const GithubLogin = async () => {
+    try {
+      const result = await signInWithRedirect(auth, githubProvider);
+      navigate('/');
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  //Facebook Sign in from firebase
+  const fbProvider = new FacebookAuthProvider();
+
+  const FacebookLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, fbProvider);
+      const creantial = await FacebookAuthProvider.credentialFromResult(result);
+      const token = creantial.accessToken;
+      let photoURL = result.user.photoURL + '?height=500&access_token' + token;
+      await updateProfile(auth, currentUser, { photoURL: photoURL });
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="flex flex-col sm:flex-row items-center justify-center h-screen  bg-gray-100 ">
       <div className="flex flex-col w-full sm:w-1/2 justify-center items-center sm:items-start sm:px-8">
@@ -21,7 +69,7 @@ export const Login = () => {
 
         <div className="flex flex-col justify-center items-center align-middle m-auto">
           <button
-            onClick={google}
+            onClick={GoogleLogin}
             type="button"
             class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-12 py-3 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2 max-w-[300px]"
           >
@@ -43,7 +91,7 @@ export const Login = () => {
             Sign in with Google
           </button>
           <button
-            onClick={github}
+            onClick={GithubLogin}
             type="button"
             class="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-12 py-3 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2 max-w-[300px]"
           >
@@ -65,6 +113,7 @@ export const Login = () => {
             Sign in with Github
           </button>
           <button
+            onClick={FacebookLogin}
             type="button"
             class="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-10 py-3 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2 max-w-[300px]"
           >

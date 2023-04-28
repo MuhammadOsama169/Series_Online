@@ -10,6 +10,8 @@ import { motion } from 'framer-motion';
 import useMediaQuery from '../hooks/useMediaQuery';
 import CloseIcon from '../assets/close-icon.svg';
 import { Footer } from './Footer';
+import { auth } from '../utils/firebase-config';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const variants = {
   open: { opacity: 1 },
@@ -21,10 +23,11 @@ const variants2 = {
 };
 
 export const Header = ({ isOpen, setIsOpen }) => {
+  //User login credentials
+  const [user, loading] = useAuthState(auth);
+
   const isAboveSmallScreens = useMediaQuery('(min-width:850px)');
   const [isMenuToggled, setIsMediaToggled] = useState(false);
-
-  const username = useSelector((state) => state?.users?.userDetails);
 
   const [term, setTerm] = useState();
   const navigate = useNavigate();
@@ -42,9 +45,14 @@ export const Header = ({ isOpen, setIsOpen }) => {
   const handleSignIn = () => {
     navigate('/login');
   };
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
     navigate('/');
-    dispatch(logout({}));
+    try {
+      await auth.signOut();
+      dispatch(logout({}));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const toggleHamburgerBtn = () => {
@@ -145,7 +153,7 @@ export const Header = ({ isOpen, setIsOpen }) => {
                   >
                     Home
                   </button>
-                  {username || username?.aud ? (
+                  {user || user?.uid ? (
                     <div className="backdrop-filter backdrop-blur-lg flex">
                       <button
                         className="font-opensans text-lg"
@@ -154,7 +162,7 @@ export const Header = ({ isOpen, setIsOpen }) => {
                         Sign Out
                       </button>
                       <img
-                        src={username?.photos[0].value}
+                        src={user?.photoURL}
                         className="rounded-full h-8 w-8 object-cover ml-4"
                         alt=""
                       />
@@ -251,7 +259,7 @@ export const Header = ({ isOpen, setIsOpen }) => {
                   />
                 </div>
               </form>
-              {username || username?.aud ? (
+              {user || user?.uid ? (
                 <div className="backdrop-filter backdrop-blur-lg flex">
                   <button
                     className="font-opensans text-lg"
@@ -260,7 +268,7 @@ export const Header = ({ isOpen, setIsOpen }) => {
                     Sign Out
                   </button>
                   <img
-                    src={username?.photos[0].value}
+                    src={user?.photoURL}
                     className="rounded-full h-8 w-8 object-cover ml-4"
                     alt=""
                   />
