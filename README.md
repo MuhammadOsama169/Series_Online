@@ -1,4 +1,4 @@
-![Logo](/src/assets/series-online-logo-dark.png)
+![Logo](/src/assets/series-online-logo-dark.png.png)
 🎬🍿🎞️Welcome to SeriesOnline Clone🎬🍿🎞️
 
 This is a clone of seriesonline, where you can check trending movies and their details.
